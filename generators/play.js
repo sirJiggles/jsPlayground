@@ -23,9 +23,6 @@ run(function *() {
   const uri = 'https://jsonplaceholder.typicode.com/posts/1'
   const response = yield fetch(uri)
   const post = yield response.json()
-  console.log('------------------------------------');
-  console.log('post is:', post);
-  console.log('------------------------------------');
   // console.log(post)
 })
 
@@ -49,3 +46,28 @@ function run(generator) {
   )
 
 }
+
+runAgain(function *() {
+  const uri = 'https://jsonplaceholder.typicode.com/posts/1'
+  const response = yield fetch(uri)
+  const post = yield response.json()
+  return post.title
+})
+.catch(err => console.log(err))
+.then(x => console.log('got value: ', x))
+
+// run v2, recursive
+function runAgain(generator) {
+  const iterator = generator()
+
+  function iterate(iteration) {
+    // if on the last just return the value
+    if (iteration.done) { return iteration.value }
+    // else resolve the promise again recursivly
+    const promise = iteration.value
+    return promise.then(x => iterate(iterator.next(x)))
+  }
+
+  return iterate(iterator.next())
+}
+

@@ -47,4 +47,3 @@ async function all() {
 const data = all()
 data
 
-

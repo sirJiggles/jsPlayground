@@ -39,9 +39,22 @@ var fileContents = fs.readFileSync('sampleData.txt', 'utf8')
   .split('\n')
   // split each line on tab
   .map(line => line.split('\t'))
+  .reduce((customers, line) => {
+    // each line
+    // console.log(line)
+    // empty array for each name, meaning, we get smething  like this
+    // {gareth: [], rocks: [] ...}
+    customers[line[0]] = customers[line[0]] || []
+    customers[line[0]].push({
+      name: line[1],
+      price: line[2],
+      quantity: line[3]
+    })
+    return customers
+  }, {})
 
 
-console.log(fileContents)
+console.log(JSON.stringify(fileContents, null, 2))
 
 
 

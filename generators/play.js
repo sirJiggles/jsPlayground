@@ -2,10 +2,10 @@ const fetch = require('node-fetch');
 const co = require('co');
 
 // promise method
-fetch('https://jsonplaceholder.typicode.com/posts/1')
-  .then(response => response.json() )
-  .then(post => post.title )
-  // .then( x => console.log(x) )
+// fetch('https://jsonplaceholder.typicode.com/posts/1')
+//   .then(response => response.json() )
+//   .then(post => post.title )
+//   .then( x => x )
 
 // the * marks it as a generator function (using co)
 co(function *() {
@@ -13,12 +13,12 @@ co(function *() {
   // get the value right back from the promise!
   const response = yield fetch(uri)
   // and again!
-  const post = yield response.json
+  const post = yield response.json()
 
   // console.log(post);
 })
 
-// Making our own co func called run
+// // Making our own co func called run
 run(function *() {
   const uri = 'https://jsonplaceholder.typicode.com/posts/1'
   const response = yield fetch(uri)

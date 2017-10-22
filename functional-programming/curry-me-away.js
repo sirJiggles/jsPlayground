@@ -18,6 +18,7 @@ let dragoon =
 
 const x = dragoon('gareth')('majestic')('fire')
 
+
 x
 
 // function can pass though the app and grab arguments as it goes,
@@ -30,5 +31,9 @@ const _ = require('lodash')
 let dragine = _.curry(dragon)
 
 const y = dragine('lisa', 'lovely', 'hearts')
+
+const u = dragine('nat')('sporty')('HTML')
+
+u
 
 y

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "baconjs": "^0.7.95",
     "highland": "^2.11.1",
     "lodash": "^4.17.4"
   }
